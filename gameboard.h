@@ -1,5 +1,5 @@
 // Name: James A. Chase
-// File: board.h
+// File: gameboard.h
 // Date: 26 February 2024
 // Description: Header file for GameBoard subclass
 
