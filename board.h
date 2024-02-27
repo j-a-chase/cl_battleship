@@ -7,7 +7,6 @@ class Board {
 
     public:
         virtual void printBoard() = 0;
-        virtual void updateTile(int row, int col) = 0;
         virtual void resetBoard() = 0;
 };
 
