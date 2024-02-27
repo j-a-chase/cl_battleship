@@ -10,6 +10,8 @@
 
 class ShipBoard : public Board {
     public:
+        ShipBoard();
+
         void printBoard() override;
         void resetBoard() override;
 

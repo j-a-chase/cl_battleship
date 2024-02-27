@@ -10,6 +10,8 @@
 
 class GameBoard : public Board {
     public:
+        GameBoard();
+
         void printBoard() override;
         void resetBoard() override;
         
