@@ -15,7 +15,7 @@ class GameBoard : public Board {
         void printBoard() override;
         void resetBoard() override;
         
-        void updateTile(int row, int col);
+        void updateTile(int row, int col, bool is_hit);
 };
 
 #endif
