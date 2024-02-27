@@ -4,6 +4,11 @@
 
 #include <iostream>
 
+#include "engine.h"
+
 int main() {
+    Engine* battleship = new Engine();
+    battleship->runGame();
+    delete battleship;
     return 0;
 }

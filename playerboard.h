@@ -9,13 +9,15 @@
 #include "board.h"
 
 class PlayerBoard : public Board {
+    private:
+        void setShip(int size);
+
     public:
         PlayerBoard();
     
         void printBoard() override;
         void resetBoard() override;
 
-        void setShip(int size);
         void setShips();
 };
 

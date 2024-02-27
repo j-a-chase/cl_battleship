@@ -23,7 +23,7 @@ void ShipBoard::printBoard() {
 void ShipBoard::resetBoard() {
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
-            board[i][j] = '0';
+            board[i][j] = '-';
         }
     }
     placeShips();
