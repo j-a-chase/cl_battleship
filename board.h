@@ -2,7 +2,7 @@
 #define BOARD_H
 
 class Board {
-    private:
+    protected:
         char board[10][10];
 
     public:
