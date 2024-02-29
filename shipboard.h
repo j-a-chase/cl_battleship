@@ -15,6 +15,8 @@ class ShipBoard : public Board {
         void printBoard() override;
         void resetBoard() override;
 
+        char (*getBoard())[10] { return board; }
+
         void placeShips();
 };
 
