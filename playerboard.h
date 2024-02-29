@@ -19,6 +19,7 @@ class PlayerBoard : public Board {
         void resetBoard() override;
 
         void setShips();
+        void updateTile(int row, int col, bool is_hit);
 };
 
 #endif

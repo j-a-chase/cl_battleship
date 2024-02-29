@@ -97,3 +97,8 @@ void PlayerBoard::setShips() {
         printBoard();
     }
 }
+
+void PlayerBoard::updateTile(int row, int col, bool is_hit) {
+    if (is_hit) board[row][col] = 'X';
+    else board[row][col] = 'm';
+}
