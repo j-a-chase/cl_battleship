@@ -13,6 +13,8 @@ class Board {
     public:
         virtual void printBoard() = 0;
         virtual void resetBoard() = 0;
+
+        char (*getBoard())[10] { return board; }
 };
 
 #endif
