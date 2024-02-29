@@ -10,11 +10,14 @@ class Engine {
         GameBoard* game;
         PlayerBoard* userboard;
         ShipBoard* enemyboard;
+        bool isEnd;
 
+        void setup();
+        void runGame();
+        bool playerShipHit(int row, int col);
+        bool enemyShipHit(int row, int col);
     public:
         Engine();
-
-        void runGame();
 
         ~Engine();
 };
