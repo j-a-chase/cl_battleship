@@ -6,14 +6,18 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+// Board class
 class Board {
     protected:
+        // 2-D char array to represent the game board
         char board[10][10];
 
     public:
+        // virtual functions to print board and reset the board for a new game
         virtual void printBoard() = 0;
         virtual void resetBoard() = 0;
 
+        // getter for protected board attribute
         char (*getBoard())[10] { return board; }
 };
 
