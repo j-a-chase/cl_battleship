@@ -22,6 +22,8 @@ class Engine {
         bool playerShipHit(int row, int col);
         bool enemyShipHit(int row, int col);
         void enemyTurn();
+
+        bool determineEndGame(bool isPlayer);
     public:
         Engine();
 

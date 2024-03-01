@@ -32,13 +32,13 @@ void Engine::setup() {
 bool Engine::playerShipHit(int row, int col) {
     char (*pBoard)[10] = userboard->getBoard();
 
-    return (pBoard[row][col] == 'S') ? true : false;
+    return pBoard[row][col] == 'S';
 }
 
 bool Engine::enemyShipHit(int row, int col) {
     char (*eBoard)[10] = enemyboard->getBoard();
 
-    return (eBoard[row][col] == 'S') ? true : false;
+    return eBoard[row][col] == 'S';
 }
 
 void Engine::enemyTurn() {
@@ -74,6 +74,23 @@ void Engine::enemyTurn() {
     system("pause");
 }
 
+bool Engine::determineEndGame(bool playerTurn) {
+    char (*player)[10] = userboard->getBoard();
+    char (*cpu)[10] = game->getBoard();
+
+    int eHitCount, pHitCount;
+    eHitCount = pHitCount = 0;
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            if (player[i][j] == 'X') pHitCount++;
+            if (cpu[i][j] == 'O') eHitCount++;
+        }
+    }
+
+    if (playerTurn) return eHitCount == 14;
+    return pHitCount == 14;
+}
+
 void Engine::runGame() {
     while (!isEnd) {
         int inpRow, inpCol;
@@ -87,6 +104,14 @@ void Engine::runGame() {
         eHit = enemyShipHit(inpRow, inpCol);
         game->updateTile(inpRow, inpCol, eHit);
 
+        isEnd = determineEndGame(true);
+        if (isEnd) {
+            system("CLS");
+            game->printBoard();
+            std::cout << "\n\nYou win!!!\n";
+            return;
+        }
+
         system("CLS");
         std::cout << "Turn " << turnCount << "\n";
         game->printBoard();
@@ -95,7 +120,14 @@ void Engine::runGame() {
 
         enemyTurn();
         turnCount++;
-        // isEnd = true;
+        
+        isEnd = determineEndGame(false);
+        if (isEnd) {
+            system("CLS");
+            userboard->printBoard();
+            std::cout << "\n\nYou lose!!!\n";
+            return;
+        }
     }
 }
 
