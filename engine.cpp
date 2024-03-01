@@ -4,6 +4,8 @@
 // Description: Implementation file for Engine class
 
 #include <iostream>
+#include <string>
+#include <ctime>
 
 #include "engine.h"
 
@@ -12,6 +14,8 @@ Engine::Engine() {
     userboard = new PlayerBoard();
     enemyboard = new ShipBoard();
     isEnd = false;
+    guess_i = 0;
+    turnCount = 1;
     setup();
 }
 
@@ -37,18 +41,60 @@ bool Engine::enemyShipHit(int row, int col) {
     return (eBoard[row][col] == 'S') ? true : false;
 }
 
+void Engine::enemyTurn() {
+    int row, col;
+    bool is_hit;
+    bool valid = false;
+    std::string guess;
+    std::srand(std::time(nullptr));
+
+    while (!valid) {
+        row = std::rand() % 10;
+        col = std::rand() % 10;
+
+        guess = std::to_string(row) + " " + std::to_string(col);
+        valid = true;
+        for (int i = 0; i < std::size(guesses); i++) {
+            if (guesses[i] == guess) {
+                valid = false;
+                break;
+            }
+        }
+    }
+
+    guesses[guess_i++] += guess;
+
+    is_hit = playerShipHit(row, col);
+    userboard->updateTile(row, col, is_hit);
+
+    system("CLS");
+    std::cout << "Turn " << turnCount << "\n";
+    userboard->printBoard();
+    std::cout << "\n\nEnemy shot: " << row << " " << col << "\n";
+    system("pause");
+}
+
 void Engine::runGame() {
     while (!isEnd) {
         int inpRow, inpCol;
         bool eHit;
         system("CLS");
+        std::cout << "Turn " << turnCount << "\n";
         game->printBoard();
-        std::cout << "Enter coordinate for shot [format-> ROW COL]: ";
+        std::cout << "\n\nEnter coordinate for shot [format-> ROW COL]: ";
         std::cin >> inpRow >> inpCol;
 
         eHit = enemyShipHit(inpRow, inpCol);
         game->updateTile(inpRow, inpCol, eHit);
 
+        system("CLS");
+        std::cout << "Turn " << turnCount << "\n";
+        game->printBoard();
+        std::cout << "\n\nYour shot: " << inpRow << " " << inpCol << "\n";
+        system("pause");
+
+        enemyTurn();
+        turnCount++;
         // isEnd = true;
     }
 }
