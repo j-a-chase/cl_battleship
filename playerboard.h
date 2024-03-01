@@ -18,11 +18,7 @@ class PlayerBoard : public Board {
     public:
         // constructor
         PlayerBoard();
-    
-        // override parent virtual functions
-        void printBoard() override;
-        void resetBoard() override;
-
+        
         // public function that calls setShip a certain number of times
         void setShips();
 

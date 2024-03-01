@@ -15,29 +15,6 @@ GameBoard::GameBoard() {
     resetBoard();
 }
 
-// printBoard implementation
-void GameBoard::printBoard() {
-    // prints each value in the board attribute surrounded by brackets - []
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            std::cout << "[" << board[i][j] << "] ";
-        }
-
-        // start newline every 10 values
-        std::cout << "\n";
-    }
-}
-
-// resetBoard implementation
-void GameBoard::resetBoard() {
-    // initialize every value to '-'
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            board[i][j] = '-';
-        }
-    }
-}
-
 // updateTile implementation
 void GameBoard::updateTile(int row, int col, bool is_hit) {
     // update board to reflect if the player hit or not

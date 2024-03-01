@@ -15,27 +15,10 @@ ShipBoard::ShipBoard() {
     resetBoard();
 }
 
-// printBoard implementation
-void ShipBoard::printBoard() {
-    // loop through each individual tile value and print it with brackets around it
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            std::cout << "[" << board[i][j] << "] ";
-        }
-
-        // make a newline every 10 values (10x10 grid)
-        std::cout << "\n";
-    }
-}
-
 // resetBoard implementation
 void ShipBoard::resetBoard() {
-    // initialize every value in the board to '-'
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            board[i][j] = '-';
-        }
-    }
+    // call parent function
+    Board::resetBoard();
 
     // hide cpu ships
     placeShips();
@@ -49,7 +32,7 @@ void ShipBoard::placeShips() {
     Currently places ships in static positions on cpu board.
 
     */
-    
+
     // 5-length ship
     for (int col = 3; col < 8; col++) {
         board[1][col] = 'S';

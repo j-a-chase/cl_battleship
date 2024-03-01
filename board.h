@@ -14,8 +14,8 @@ class Board {
 
     public:
         // virtual functions to print board and reset the board for a new game
-        virtual void printBoard() = 0;
-        virtual void resetBoard() = 0;
+        virtual void printBoard();
+        virtual void resetBoard();
 
         // getter for protected board attribute
         char (*getBoard())[10] { return board; }

@@ -15,29 +15,6 @@ PlayerBoard::PlayerBoard() {
     resetBoard();
 }
 
-// printBoard implementation
-void PlayerBoard::printBoard() {
-    // prints every value in the board surrounded by brackets - []
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            std::cout << "[" << board[i][j] << "] ";
-        }
-
-        // make newline every 10 values
-        std::cout << "\n";
-    }
-}
-
-// resetBoard implementation
-void PlayerBoard::resetBoard() {
-    // initialize each board value to '-'
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            board[i][j] = '-';
-        }
-    }
-}
-
 // setShip implementation
 void PlayerBoard::setShip(int size) {
     // values to hold the orientation, row, and column inputs from user

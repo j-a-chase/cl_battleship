@@ -15,8 +15,7 @@ class ShipBoard : public Board {
         // constructor
         ShipBoard();
 
-        // override parent virtual functions
-        void printBoard() override;
+        // override parent virtual function
         void resetBoard() override;
 
         // placeShips method to place the CPU ships
