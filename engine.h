@@ -12,17 +12,22 @@ class Engine {
         GameBoard* game;
         PlayerBoard* userboard;
         ShipBoard* enemyboard;
+
         bool isEnd;
-        std::string guesses[100];
-        int guess_i;
         int turnCount;
 
+        std::string pGuesses[100];
+        int pGuessIndex;
+
+        std::string eGuesses[100];
+        int eGuessIndex;
+        
         void setup();
         void runGame();
-        bool playerShipHit(int row, int col);
-        bool enemyShipHit(int row, int col);
         void enemyTurn();
 
+        bool playerShipHit(int row, int col);
+        bool enemyShipHit(int row, int col);
         bool determineEndGame(bool isPlayer);
     public:
         Engine();

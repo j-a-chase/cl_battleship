@@ -14,7 +14,8 @@ Engine::Engine() {
     userboard = new PlayerBoard();
     enemyboard = new ShipBoard();
     isEnd = false;
-    guess_i = 0;
+    pGuessIndex = 0;
+    eGuessIndex = 0;
     turnCount = 1;
     setup();
 }
@@ -54,15 +55,15 @@ void Engine::enemyTurn() {
 
         guess = std::to_string(row) + " " + std::to_string(col);
         valid = true;
-        for (int i = 0; i < std::size(guesses); i++) {
-            if (guesses[i] == guess) {
+        for (int i = 0; i < std::size(eGuesses); i++) {
+            if (eGuesses[i] == guess) {
                 valid = false;
                 break;
             }
         }
     }
 
-    guesses[guess_i++] += guess;
+    eGuesses[eGuessIndex++] += guess;
 
     is_hit = playerShipHit(row, col);
     userboard->updateTile(row, col, is_hit);
@@ -95,11 +96,29 @@ void Engine::runGame() {
     while (!isEnd) {
         int inpRow, inpCol;
         bool eHit;
+        bool valid = false;
+        std::string guess;
         system("CLS");
         std::cout << "Turn " << turnCount << "\n";
         game->printBoard();
-        std::cout << "\n\nEnter coordinate for shot [format-> ROW COL]: ";
-        std::cin >> inpRow >> inpCol;
+
+        while (!valid) {
+            std::cout << "\n\nEnter coordinate for shot [format-> ROW COL]: ";
+            std::cin >> inpRow >> inpCol;
+
+            guess = std::to_string(inpRow) + " " + std::to_string(inpCol);
+
+            valid = true;
+            for (int i = 0; i < std::size(pGuesses); i++) {
+                if (pGuesses[i] == guess) {
+                    std::cout << "\nCannot shoot same tile twice!\n";
+                    valid = false;
+                    break;
+                }
+            }
+        }
+
+        pGuesses[pGuessIndex++] = guess;
 
         eHit = enemyShipHit(inpRow, inpCol);
         game->updateTile(inpRow, inpCol, eHit);
