@@ -128,6 +128,7 @@ void Engine::runGame() {
             system("CLS");
             game->printBoard();
             std::cout << "\n\nYou win!!!\n";
+            system("pause");
             return;
         }
 
@@ -145,6 +146,7 @@ void Engine::runGame() {
             system("CLS");
             userboard->printBoard();
             std::cout << "\n\nYou lose!!!\n";
+            system("pause");
             return;
         }
     }
