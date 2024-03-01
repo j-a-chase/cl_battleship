@@ -10,6 +10,7 @@
 
 // header imports
 #include "engine.h"
+#include "validation.h"
 
 // constructor implementation
 Engine::Engine() {
@@ -166,8 +167,9 @@ void Engine::runGame() {
         // while input isn't valid
         while (!valid) {
             // get input
-            std::cout << "\n\nEnter coordinate for shot [format-> ROW COL]: ";
-            std::cin >> inpRow >> inpCol;
+            std::cout << "\n\n";
+            inpRow = validateInput("Enter row for shot: ");
+            inpCol = validateInput("Enter column for shot: ");
 
             // hold string converted input
             guess = std::to_string(inpRow) + " " + std::to_string(inpCol);

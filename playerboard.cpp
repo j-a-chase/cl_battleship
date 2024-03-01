@@ -5,9 +5,11 @@
 
 // library imports
 #include <iostream>
+#include <string>
 
 // header imports
 #include "playerboard.h"
+#include "validation.h"
 
 // constructor implementation
 PlayerBoard::PlayerBoard() {
@@ -26,22 +28,22 @@ void PlayerBoard::setShip(int size) {
     // determines if placement of ship is valid
     bool valid_placement = false;
 
+    // determine if user input is valid
+    bool valid_input = false;
+
     // get orientation input
     std::cout << "How do you want to orient the " << size << "-ship?" << std::endl;
     std::cout << "\t[0] Horizontally\n";
-    std::cout << "\t[1] Vertically\n> ";
-    std::cin >> orient;
+    std::cout << "\t[1] Vertically\n";
+    orient = validateInput("> ");
 
     // if horizontal
     if (orient == 0) {
         // while not valid placement
         while (!valid_placement) {
             // get row and column
-            std::cout << "Which row? [0-9]: ";
-            std::cin >> x;
-
-            std::cout << "Which column to start in? [0-" << upper << "]: ";
-            std::cin >> y;
+            x = validateInput("Which row? [0-9]: ");
+            y = validateInput("Which column to start in? [0-" + std::to_string(upper) + "]: ");
 
             // ensure row is in bounds
             if (x < 0) x = 0;
@@ -70,11 +72,8 @@ void PlayerBoard::setShip(int size) {
         // while not valid placement
         while (!valid_placement) {
             // get user input
-            std::cout << "Which column? [0-9]: ";
-            std::cin >> y;
-
-            std::cout << "Which row to start in? [0-" << upper << "]: ";
-            std::cin >> x;
+            y = validateInput("Which column? [0-9]: ");
+            x = validateInput("Which row to start in? [0-" + std::to_string(upper) + "]: ");
 
             // ensure column is in bounds
             if (y < 0) y = 0;
